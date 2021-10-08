@@ -3,23 +3,32 @@ import java.util.*;
 
 
 public class Main {
+    private ArrayList<vaccine> vlist;
+    //used to easily display and easily get name of corresponding in hashmap
     private HashMap<String,citizen> rclist;
+    //unique id citizen map
     private HashMap<String,vaccine> vac;
     private ArrayList<hospital> h;
     public Main(){
+        this.vlist= new ArrayList<>();
         this.rclist=new HashMap<>();
         this.vac= new HashMap<>();
         this.h= new ArrayList<>();
     }
 
 
+
     public void addvac(String n,int nd,int gap){
-        vac.put(n,new vaccine(n,nd,gap));
-        vac.get(n).pr();
+        vaccine v = new vaccine(n,nd,gap);
+        this.vlist.add(v);
+        this.vac.put(n,v);
+        this.vac.get(n).prd();
+        //
 
     }
     public void reghosp(hospital h){
         this.h.add(h);
+        //id based on size of array list
         h.changid(this.h.size());
         h.pr();
     }
@@ -37,7 +46,12 @@ public class Main {
         this.rclist.put(obj.retuid(),obj);
         obj.pr();
     }
+    public void addsforhosp(String id,int d,int quan,String n){
+        //id is hospital id
+        //n is name of vaccine]
+        //d is day of its administration
 
+    }
 
 
 
@@ -96,8 +110,37 @@ public class Main {
 
 
             else if(choice==4){
+                System.out.print("Enter hospital id ");
+                String hid=Reader.next();
+                if(hid.length()==6&&(cowin.h.size()>Integer.parseInt(hid))){
+                    System.out.print("Enter number of slots you wish to add ");
+                    int n_o_sl= Reader.nextint();
+                    for(int i=0;i<n_o_sl;i++){
+                        System.out.print("Enter day number ");
+                        int dno=Reader.nextint();
+                        System.out.print("Enter Quantity ");
+                        int q= Reader.nextint();
+                        System.out.println("Select vaccine ");
+                        for(int j=0;j<cowin.vlist.size();j++){
+                            System.out.println(j+" "+cowin.vlist.get(j).getvacname());
+                        }
+                        int a= Reader.nextint();
+                        if(a>=cowin.vlist.size()|| a<0){
+                            System.out.println("Invalid input for vaccine");
+                        }
+                        else{
+                            String name=cowin.vlist.get(a).getvacname();
+                            cowin.h.get(Integer.parseInt(hid)).addslot(dno,q,name);
 
-                choice=4;
+                        }
+
+                    }
+
+                }
+                else{
+                    System.out.println("Hospital not registered or invalid id");
+                }
+
             }
             else if(choice==5){
                 choice=5;

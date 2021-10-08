@@ -5,7 +5,7 @@ public class hospital {
    private String pin;
    private String id;
    public ArrayList<slot> slts;
-   hospital(String n,String p){
+   public hospital(String n,String p){
        this.name=n;
        this.pin=p;
        this.id="000000";
