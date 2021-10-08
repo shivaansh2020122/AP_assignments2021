@@ -5,12 +5,19 @@ import java.util.*;
 public class Main {
     private HashMap<String,citizen> rclist =new HashMap<>();
     private HashMap<String,vaccine> vac = new HashMap<>();
+    private ArrayList<hospital> h= new ArrayList<>();
 
 
-    public void addvac(){
+    public void addvac(String n,int nd,int gap){
+        vac.put(n,new vaccine(n,nd,gap));
+        vac.get(n).pr();
 
     }
-
+    public void reghosp(hospital h){
+        this.h.add(h);
+        h.changid(this.h.size());
+        h.pr();
+    }
     public void registercitizen(citizen obj){
         if(this.rclist.size()>0){
             if(this.rclist.containsKey(obj.retuid())){
@@ -45,10 +52,19 @@ public class Main {
             System.out.println(" ");
             int choice=Reader.nextint();
             if(choice==1){
-                choice=1;
+                System.out.print("Enter vaccine name ");
+                String name= Reader.next();
+                System.out.print("Enter number of dozes required for the vaccine ");
+                int nd= Reader.nextint();
+                System.out.print("Enter the gap between dozes of the vaccine ");
+                int gap=Reader.nextint();
+                cowin.addvac(name,nd,gap);
             }
             else if(choice==2){
-                choice=2;
+                System.out.print("Enter name of Hospital ");
+                String name= Reader.next();
+                System.out.print("Enter pincode ");
+                String pin= Reader.next();
             }
             else if(choice==3){
                 System.out.print("Enter citizen name ");
@@ -60,8 +76,8 @@ public class Main {
                 System.out.print("Enter Unique id ");
                 String uid=Reader.next();
                 //System.out.println("");
-                if(age>=18){
-                    citizen ob= new citizen(name,uid,age);
+                citizen ob= new citizen(name,uid,age);
+                if(ob.retage()>=18){
                     cowin.registercitizen(ob);
                 }
                 else {
@@ -71,6 +87,7 @@ public class Main {
 
 
             else if(choice==4){
+
                 choice=4;
             }
             else if(choice==5){
@@ -83,7 +100,6 @@ public class Main {
                 choice=7;
             }
             else if(choice==8){
-                choice=8;
                 break;
             }
             else {

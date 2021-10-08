@@ -14,6 +14,9 @@ public class citizen {
     public String retuid(){
         return this.uid;
     }
+    public int retage(){
+        return this.age;
+    }
 
    // public boolean checkcitizen(ArrayList<citizen> c, String n, String id, int r){
      //   boolean a=true;

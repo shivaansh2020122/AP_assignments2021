@@ -1,5 +1,9 @@
 public class slot {
-    int d;
-    String n_vac;
-    int quan;
+    private int d;
+    public int quan;
+    private String  vname;
+    public slot(int d,int quan,String n){
+
+
+    }
 }

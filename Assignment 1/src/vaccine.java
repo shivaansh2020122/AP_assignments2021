@@ -9,4 +9,7 @@ public class vaccine {
         this.gap=g;
 
     }
+    public void pr(){
+        System.out.println("Name of vaccine "+this.name+" Number of dozes required "+this.nd+" gap between dozes "+this.gap);
+    }
 }
