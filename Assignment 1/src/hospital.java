@@ -1,11 +1,16 @@
+import java.util.ArrayList;
+
 public class hospital {
    private String name;
    private String pin;
    private String id;
+   public ArrayList<slot> slts;
    hospital(String n,String p){
        this.name=n;
        this.pin=p;
        this.id="000000";
+       this.slts= new ArrayList<>();
+
    }
    public void changid(int n){
        String temp="";
@@ -16,6 +21,12 @@ public class hospital {
    }
    public void pr(){
        System.out.println("Hospital name "+this.name+" pincode "+this.pin+" with id "+this.id);
+   }
+   public void addslot(int d,int quan,String name){
+       slot s = new slot(d,quan,name);
+       this.slts.add(s);
+       System.out.print("Slot added for "+this.id);
+       s.pr();
    }
 
 }

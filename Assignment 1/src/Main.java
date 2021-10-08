@@ -3,9 +3,14 @@ import java.util.*;
 
 
 public class Main {
-    private HashMap<String,citizen> rclist =new HashMap<>();
-    private HashMap<String,vaccine> vac = new HashMap<>();
-    private ArrayList<hospital> h= new ArrayList<>();
+    private HashMap<String,citizen> rclist;
+    private HashMap<String,vaccine> vac;
+    private ArrayList<hospital> h;
+    public Main(){
+        this.rclist=new HashMap<>();
+        this.vac= new HashMap<>();
+        this.h= new ArrayList<>();
+    }
 
 
     public void addvac(String n,int nd,int gap){
@@ -32,6 +37,8 @@ public class Main {
         this.rclist.put(obj.retuid(),obj);
         obj.pr();
     }
+
+
 
 
     public static void main(String[] args) throws Exception {
@@ -65,6 +72,8 @@ public class Main {
                 String name= Reader.next();
                 System.out.print("Enter pincode ");
                 String pin= Reader.next();
+                hospital h= new hospital(name,pin);
+                cowin.reghosp(h);
             }
             else if(choice==3){
                 System.out.print("Enter citizen name ");
