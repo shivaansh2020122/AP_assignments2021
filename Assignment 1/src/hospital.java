@@ -12,14 +12,11 @@ public class hospital {
        this.slts= new ArrayList<>();
 
    }
-   public void changid(int n){
-       String temp="";
-       for(int i=0;i<6-(Integer.toString(n)).length();i++){
-           temp="0"+temp;
-       }
-       this.id=temp+Integer.toString(n);
+   public void changeid(String id){
+    this.id=id;
    }
-   public void pr(){
+
+   public void prh(){
        System.out.println("Hospital name "+this.name+" pincode "+this.pin+" with id "+this.id);
    }
    public void addslot(int d,int quan,String name){
@@ -30,6 +27,9 @@ public class hospital {
    }
    public void printdet(){
        System.out.println(this.id+" "+this.name);
+   }
+   public String retpin(){
+       return this.pin;
    }
 
 

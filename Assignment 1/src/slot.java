@@ -14,7 +14,14 @@ public class slot {
         System.out.println("for Day "+this.d+" Available quantity "+this.quan+" of "+this.vname);
     }
     //while booking printing slots
-    public void prslot(){
+    //public void prslot(){
 
+
+    //}
+    public String retvacname(){
+        return this.vname;
+    }
+    public int retdayofslot(){
+        return this.d;
     }
 }

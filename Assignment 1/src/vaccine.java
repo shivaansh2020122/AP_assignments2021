@@ -12,6 +12,12 @@ public class vaccine {
     public String getvacname(){
         return this.name;
     }
+    public int getgap(){
+        return this.gap;
+    }
+    public int getdozes(){
+        return this.nd;
+    }
     public void prd(){
         System.out.println("Name of vaccine "+this.name+" Number of dozes required "+this.nd+" gap between dozes "+this.gap);
     }

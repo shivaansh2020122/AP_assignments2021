@@ -5,11 +5,20 @@ public class citizen {
     private String uid;
     private int age;
     public String vacstat;
+    private String vacname;
+    public int next;
+    //next date
+    public int nd;
+    //number of dozes
     public citizen(String n,String id,int r){
         this.name=n;
         this.uid=id;
         this.age=r;
         this.vacstat="Not Registered";
+        this.vacname="Not applicable";
+        this.next=0;
+        this.nd=0;
+
     }
     public String retuid(){
         return this.uid;
@@ -20,6 +29,13 @@ public class citizen {
     public String getstat(){
         return this.vacstat;
     }
+    public String getcitvacname(){
+        return this.vacname;
+    }
+    public void setcitvacname(String s){
+        this.vacname=s;
+    }
+
 
    // public boolean checkcitizen(ArrayList<citizen> c, String n, String id, int r){
      //   boolean a=true;
@@ -33,7 +49,7 @@ public class citizen {
         //}
         //return a;
     //}
-    public void pr(){
+    public void prc(){
         System.out.println("Citizen name "+this.name+" citizen age "+this.age+" and unique id "+this.uid);
     }
 }
