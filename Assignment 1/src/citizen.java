@@ -17,6 +17,9 @@ public class citizen {
     public int retage(){
         return this.age;
     }
+    public String getstat(){
+        return this.vacstat;
+    }
 
    // public boolean checkcitizen(ArrayList<citizen> c, String n, String id, int r){
      //   boolean a=true;

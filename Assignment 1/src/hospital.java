@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class hospital {
    private String name;
-   private String pin;
+   public String pin;
    private String id;
    public ArrayList<slot> slts;
    public hospital(String n,String p){
@@ -28,5 +28,9 @@ public class hospital {
        System.out.print("Slot added for "+this.id);
        s.pr();
    }
+   public void printdet(){
+       System.out.println(this.id+" "+this.name);
+   }
+
 
 }

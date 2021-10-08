@@ -9,6 +9,8 @@ public class Main {
     //unique id citizen map
     private HashMap<String,vaccine> vac;
     private ArrayList<hospital> h;
+
+
     public Main(){
         this.vlist= new ArrayList<>();
         this.rclist=new HashMap<>();
@@ -23,7 +25,7 @@ public class Main {
         this.vlist.add(v);
         this.vac.put(n,v);
         this.vac.get(n).prd();
-        //
+        //used to print vac details on adding them on portal
 
     }
     public void reghosp(hospital h){
@@ -46,12 +48,18 @@ public class Main {
         this.rclist.put(obj.retuid(),obj);
         obj.pr();
     }
-    public void addsforhosp(String id,int d,int quan,String n){
-        //id is hospital id
-        //n is name of vaccine]
-        //d is day of its administration
 
+    public boolean searchprinthospitalpin(String p){
+        boolean a=false;
+        for(int i=0;i<this.h.size();i++){
+            if(this.h.get(i).pin==p){
+                this.h.get(i).printdet();
+                a=true;
+            }
+        }
+        return a;
     }
+
 
 
 
@@ -143,7 +151,61 @@ public class Main {
 
             }
             else if(choice==5){
-                choice=5;
+                System.out.print("Enter patient Unique ID: ");
+                String id=Reader.next();
+                if(id.length()==12&&cowin.rclist.containsKey(id)) {
+                    String stat=cowin.rclist.get(id).getstat();
+                    if(stat.equals("Registered")||stat.equals("Partially vaccinated")){
+                    System.out.println("1. Search by area");
+                    System.out.println("2. Search by Vaccine");
+                    System.out.println("3. Exit");
+                    System.out.print("Enter choice ");
+                    int ch = Reader.nextint();
+                    if (ch == 1) {
+                        //search by area
+                        System.out.print("Enter pincode ");
+                        String pincode =Reader.next();
+                        boolean a= cowin.searchprinthospitalpin(pincode);
+                        if(a){
+                            System.out.println("Enter hospital id ");
+                            String hid=Reader.next();
+                            if(hid.length()==6&&(cowin.h.size()>Integer.parseInt(hid))){
+                                if(cowin.h.get(Integer.parseInt(hid)).pin.equals(pincode)){
+                                    //search for appropriate slot in the hospital
+                                }
+                                else{
+                                    System.out.println("The hospital for id entered is not in that pincode");
+                                }
+                            }
+                            else{
+                                System.out.println("Such an id does not exist");
+                            }
+
+                        }
+                        else {
+                            System.out.println("No available hospital in that pincode ");
+                        }
+
+
+                    } else if (ch == 2) {
+                        //search by vaccine
+                        System.out.print("Enter vaccine name ");
+                        String v=Reader.next();
+
+                    } else if (ch == 3) {
+                        continue;
+                    } else {
+                        System.out.println("Invalid option");
+                    }
+                    }
+                    else{
+                        System.out.println("Person is fully vaccinated ");
+                    }
+                }
+                else {
+                    System.out.println("Id not applicable registered for patients ");
+                }
+
             }
             else if(choice==6){
                 choice=6;
