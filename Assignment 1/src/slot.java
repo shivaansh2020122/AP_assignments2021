@@ -1,6 +1,6 @@
 public class slot {
     private int d;
-    public int quan;
+    private int quan;
     private String  vname;
 
     public slot(int d,int quan,String n){
@@ -26,5 +26,8 @@ public class slot {
     }
     public int getQuan(){
         return this.quan;
+    }
+    public void redQuan(){
+        this.quan--;
     }
 }

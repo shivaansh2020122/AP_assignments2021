@@ -4,9 +4,9 @@ public class citizen {
     private String name;
     private String uid;
     private int age;
-    public String vacstat;
+    private String vacstat;
     private String vacname;
-    public int next;
+    private int next;
     //next date
     public int nd;
     //number of dozes
@@ -46,6 +46,16 @@ public class citizen {
 
     public int getNext() {
         return this.next;
+    }
+
+    public void setVacstat(String vacstat) {
+        this.vacstat = vacstat;
+    }
+    public void setNd(){
+        this.nd++;
+    }
+    public void setNext(int n){
+        this.next=n;
     }
 
     // public boolean checkcitizen(ArrayList<citizen> c, String n, String id, int r){

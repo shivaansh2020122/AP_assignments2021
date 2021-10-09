@@ -2,9 +2,10 @@ import java.util.ArrayList;
 
 public class hospital {
    private String name;
-   public String pin;
+   private String pin;
    private String id;
-   public ArrayList<slot> slts;
+   private ArrayList<slot> slts;
+
    public hospital(String n,String p){
        this.name=n;
        this.pin=p;
@@ -64,6 +65,9 @@ public class hospital {
     }
     public int retslotsize(){
        return this.slts.size();
+    }
+    public void remSlot(int c){
+       this.slts.remove(c);
     }
 
 }

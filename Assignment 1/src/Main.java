@@ -48,11 +48,10 @@ public class Main {
                 System.out.println("This id has already been registered on portal");
                 return;
             }
-            obj.vacstat="Registered";
-            this.rclist.put(obj.retuid(),obj);
-
+            //obj.setVacstat("Registered");
+            //this.rclist.put(obj.retuid(),obj);
         }
-        obj.vacstat="Registered";
+        obj.setVacstat("Registered");
         this.rclist.put(obj.retuid(),obj);
         obj.prc();
     }
@@ -140,7 +139,7 @@ public class Main {
                     cowin.registercitizen(ob);
                 }
                 else {
-                    System.out.println("Age less than 18 years ");
+                    System.out.println("Only 18 years above allowed ");
                 }
                 }
 
@@ -195,29 +194,29 @@ public class Main {
                         String pincode =Reader.next();
                         boolean a= cowin.searchprinthospitalpin(pincode);
                         if(a){
-                            System.out.println("Enter hospital id ");
+                            System.out.print("Enter hospital id ");
                             String hid=Reader.next();
                             if(hid.length()==6&&(cowin.h.size()>Integer.parseInt(hid))){
-                                if(cowin.h.get(Integer.parseInt(hid)).pin.equals(pincode)){
+                                if(cowin.h.get(Integer.parseInt(hid)).retpin().equals(pincode)){
                                     //search for appropriate slot in the hospital
                                         int nslotsprinted=0;
                                         // number of slots printed
-                                        if(cowin.h.get(Integer.parseInt(hid)).slts.size()==0){
+                                        if(cowin.h.get(Integer.parseInt(hid)).retslotsize()==0){
                                             //System.out.println("No slots available");
                                             nslotsprinted=-1;
                                         }
-                                        int l=cowin.h.get(Integer.parseInt(hid)).slts.size();
+                                        int l=cowin.h.get(Integer.parseInt(hid)).retslotsize();
                                         for (int i=0;i<l;i++){
-                                            if(cowin.h.get(Integer.parseInt(hid)).slts.get(i).retdayofslot()>=cowin.rclist.get(id).next) {
+                                            if(cowin.h.get(Integer.parseInt(hid)).retithslot(i).retdayofslot()>=cowin.rclist.get(id).getNext()) {
                                                 if(stat.equals("Partially vaccinated")) {
-                                                    if(cowin.h.get(Integer.parseInt(hid)).slts.get(i).retvacname().equals(cowin.rclist.get(id).getcitvacname())) {
-                                                        System.out.println(i + "->" + "Day " + Integer.toString(cowin.h.get(Integer.parseInt(hid)).slts.get(i).retdayofslot()) + " quantity " + cowin.h.get(Integer.parseInt(hid)).slts.get(i).quan + " vaccine :" + cowin.h.get(Integer.parseInt(hid)).slts.get(i).retvacname());
+                                                    if(cowin.h.get(Integer.parseInt(hid)).retithslot(i).retvacname().equals(cowin.rclist.get(id).getcitvacname())) {
+                                                        System.out.println(i + "->" + "Day " + Integer.toString(cowin.h.get(Integer.parseInt(hid)).retithslot(i).retdayofslot()) + " quantity " + cowin.h.get(Integer.parseInt(hid)).retithslot(i).getQuan() + " vaccine :" + cowin.h.get(Integer.parseInt(hid)).retithslot(i).retvacname());
                                                         nslotsprinted++;
                                                     }
 
                                                 }
                                                 else {
-                                                    System.out.println(i + "->" + "Day " + Integer.toString(cowin.h.get(Integer.parseInt(hid)).slts.get(i).retdayofslot()) + " quantity " + cowin.h.get(Integer.parseInt(hid)).slts.get(i).quan + " vaccine :" + cowin.h.get(Integer.parseInt(hid)).slts.get(i).retvacname());
+                                                    System.out.println(i + "->" + "Day " + Integer.toString(cowin.h.get(Integer.parseInt(hid)).retithslot(i).retdayofslot()) + " quantity " + cowin.h.get(Integer.parseInt(hid)).retithslot(i).getQuan() + " vaccine :" + cowin.h.get(Integer.parseInt(hid)).retithslot(i).retvacname());
                                                     nslotsprinted++;
                                                 }
                                             }
@@ -231,7 +230,7 @@ public class Main {
                                                 continue;
                                             }
                                             if(stat.equals("Partially vaccinated")){
-                                                if(!(cowin.h.get(Integer.parseInt(hid)).slts.get(cslot).retvacname().equals(cowin.rclist.get(id).getcitvacname()))){
+                                                if(!(cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).retvacname().equals(cowin.rclist.get(id).getcitvacname()))){
                                                     System.out.println("Slot is not corresponding to the same vaccine ");
                                                     continue;
                                                 }
@@ -241,23 +240,27 @@ public class Main {
                                                 }
                                             }
 
-                                            vaccine v = cowin.vac.get(cowin.h.get(Integer.parseInt(hid)).slts.get(cslot).retvacname());
-                                            cowin.h.get(Integer.parseInt(hid)).slts.get(cslot).quan--;
-                                            if (cowin.h.get(Integer.parseInt(hid)).slts.get(cslot).quan < 0) {
+                                            vaccine v = cowin.vac.get(cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).retvacname());
+                                            cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).redQuan();
+                                            if (cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).getQuan() < 0) {
                                                 //kept in case some quantity initially was 0
-                                                cowin.h.get(Integer.parseInt(hid)).slts.remove(cslot);
+                                                cowin.h.get(Integer.parseInt(hid)).remSlot(cslot);
                                             } else {
-                                                if (cowin.h.get(Integer.parseInt(hid)).slts.get(cslot).quan == 0) {
-                                                    cowin.h.get(Integer.parseInt(hid)).slts.remove(cslot);
+                                                if (cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).getQuan() == 0) {
+                                                    cowin.h.get(Integer.parseInt(hid)).remSlot(cslot);
                                                 }
-                                                cowin.rclist.get(id).nd++;
+                                                //basically inc the no of dozes recieved
+                                                cowin.rclist.get(id).setNd();
+                                                //no need to set it everytime but will never cause error since already handled above
+                                                //helped avoid checking other cases
                                                 cowin.rclist.get(id).setcitvacname(v.getvacname());
-                                                if (cowin.rclist.get(id).nd == v.getdozes()) {
-                                                    cowin.rclist.get(id).vacstat = "Fully vaccinated";
+                                                if (cowin.rclist.get(id).getNd() == v.getdozes()) {
+                                                    cowin.rclist.get(id).setVacstat("Fully vaccinated");
                                                 } else {
-                                                    cowin.rclist.get(id).vacstat = "Partially vaccinated";
+                                                    //no need to set it everytime but will never cause error since already handled above
+                                                    cowin.rclist.get(id).setVacstat("Partially vaccinated");
                                                 }
-                                                cowin.rclist.get(id).next = cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).retdayofslot()+v.getgap();
+                                                cowin.rclist.get(id).setNext(cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).retdayofslot()+v.getgap());
                                                 System.out.println(cowin.rclist.get(id).getcitName()+" vaccinated with "+cowin.rclist.get(id).getcitvacname());
                                             }
                                         }
@@ -290,7 +293,7 @@ public class Main {
                         //correction here needed
 
                         if(a){
-                            System.out.println("Enter hospital id ");
+                            System.out.print("Enter hospital id ");
                             String hid=Reader.next();
                             if(hid.length()==6&&(cowin.h.size()>Integer.parseInt(hid))){
 
@@ -309,15 +312,15 @@ public class Main {
                                     //retslotsize returns the size of hospital slts array list
                                     for (int i=0;i<l;i++){
                                         if(cowin.h.get(Integer.parseInt(hid)).retithslot(i).retvacname().equals(vname)) {
-                                            if (cowin.h.get(Integer.parseInt(hid)).retithslot(i).retdayofslot() >= cowin.rclist.get(id).next) {
+                                            if (cowin.h.get(Integer.parseInt(hid)).retithslot(i).retdayofslot() >= cowin.rclist.get(id).getNext()) {
                                                 if (stat.equals("Partially vaccinated")) {
-                                                    if (cowin.h.get(Integer.parseInt(hid)).slts.get(i).retvacname().equals(cowin.rclist.get(id).getcitvacname())) {
-                                                        System.out.println(i + "->" + "Day " + Integer.toString(cowin.h.get(Integer.parseInt(hid)).slts.get(i).retdayofslot()) + " quantity " + cowin.h.get(Integer.parseInt(hid)).slts.get(i).quan + " vaccine :" + cowin.h.get(Integer.parseInt(hid)).slts.get(i).retvacname());
+                                                    if (cowin.h.get(Integer.parseInt(hid)).retithslot(i).retvacname().equals(cowin.rclist.get(id).getcitvacname())) {
+                                                        System.out.println(i + "->" + "Day " + Integer.toString(cowin.h.get(Integer.parseInt(hid)).retithslot(i).retdayofslot()) + " quantity " + cowin.h.get(Integer.parseInt(hid)).retithslot(i).getQuan() + " vaccine :" + cowin.h.get(Integer.parseInt(hid)).retithslot(i).retvacname());
                                                         nslotsprinted++;
                                                     }
 
                                                 } else {
-                                                    System.out.println(i + "->" + "Day " + Integer.toString(cowin.h.get(Integer.parseInt(hid)).slts.get(i).retdayofslot()) + " quantity " + cowin.h.get(Integer.parseInt(hid)).slts.get(i).quan + " vaccine :" + cowin.h.get(Integer.parseInt(hid)).slts.get(i).retvacname());
+                                                    System.out.println(i + "->" + "Day " + Integer.toString(cowin.h.get(Integer.parseInt(hid)).retithslot(i).retdayofslot()) + " quantity " + cowin.h.get(Integer.parseInt(hid)).retithslot(i).getQuan() + " vaccine :" + cowin.h.get(Integer.parseInt(hid)).retithslot(i).retvacname());
                                                     nslotsprinted++;
                                                 }
                                             }
@@ -332,7 +335,7 @@ public class Main {
                                             continue;
                                         }
                                         if(stat.equals("Partially vaccinated")){
-                                            if(!(cowin.h.get(Integer.parseInt(hid)).slts.get(cslot).retvacname().equals(cowin.rclist.get(id).getcitvacname()))){
+                                            if(!(cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).retvacname().equals(cowin.rclist.get(id).getcitvacname()))){
                                                 System.out.println("Slot is not corresponding to the same vaccine ");
                                                 continue;
                                             }
@@ -342,23 +345,23 @@ public class Main {
                                             }
                                         }
 
-                                        vaccine v = cowin.vac.get(cowin.h.get(Integer.parseInt(hid)).slts.get(cslot).retvacname());
-                                        cowin.h.get(Integer.parseInt(hid)).slts.get(cslot).quan--;
-                                        if (cowin.h.get(Integer.parseInt(hid)).slts.get(cslot).quan < 0) {
+                                        vaccine v = cowin.vac.get(cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).retvacname());
+                                        cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).redQuan();
+                                        if (cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).getQuan() < 0) {
                                             //kept in case some quantity initially was 0
-                                            cowin.h.get(Integer.parseInt(hid)).slts.remove(cslot);
+                                            cowin.h.get(Integer.parseInt(hid)).remSlot(cslot);
                                         } else {
-                                            if (cowin.h.get(Integer.parseInt(hid)).slts.get(cslot).quan == 0) {
-                                                cowin.h.get(Integer.parseInt(hid)).slts.remove(cslot);
+                                            if (cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).getQuan() == 0) {
+                                                cowin.h.get(Integer.parseInt(hid)).remSlot(cslot);
                                             }
-                                            cowin.rclist.get(id).nd++;
+                                            cowin.rclist.get(id).setNd();
                                             cowin.rclist.get(id).setcitvacname(v.getvacname());
-                                            if (cowin.rclist.get(id).nd == v.getdozes()) {
-                                                cowin.rclist.get(id).vacstat = "Fully vaccinated";
+                                            if (cowin.rclist.get(id).getNd() == v.getdozes()) {
+                                                cowin.rclist.get(id).setVacstat("Fully vaccinated");
                                             } else {
-                                                cowin.rclist.get(id).vacstat = "Partially vaccinated";
+                                                cowin.rclist.get(id).setVacstat("Partially vaccinated");
                                             }
-                                            cowin.rclist.get(id).next = cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).retdayofslot()+v.getgap();
+                                            cowin.rclist.get(id).setNext(cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).retdayofslot()+v.getgap());
                                             System.out.println(cowin.rclist.get(id).getcitName()+" vaccinated with "+cowin.rclist.get(id).getcitvacname());
                                         }
                                     }
@@ -400,7 +403,7 @@ public class Main {
             else if(choice==6){
                 System.out.print("Enter hospital id ");
                 String hid = Reader.next();
-                if(cowin.h.size()<=Integer.parseInt(hid)||hid.length()!=6){
+                if((cowin.h.size()<=Integer.parseInt(hid))||(hid.length()!=6)){
                     System.out.println("No such hospital");
                     continue;
                 }
@@ -417,10 +420,11 @@ public class Main {
                 System.out.print("Enter citizen id ");
                 String id= Reader.next();
                 if(cowin.rclist.containsKey(id)){
-                    System.out.println(cowin.rclist.get(id).getstat());
                     if(cowin.rclist.get(id).getstat().equals("Registered")){
+                        System.out.println("Citizen "+cowin.rclist.get(id).getstat());
                         continue;
                     }
+                    System.out.println(cowin.rclist.get(id).getstat());
                     System.out.println("Vaccine given "+cowin.rclist.get(id).getcitvacname());
                     System.out.println("Number of dozes given  "+Integer.toString(cowin.rclist.get(id).getNd()));
                     if(cowin.rclist.get(id).getstat().equals("Partially vaccinated")){
