@@ -40,6 +40,14 @@ public class citizen {
         return this.name;
     }
 
+    public int getNd() {
+        return this.nd;
+    }
+
+    public int getNext() {
+        return this.next;
+    }
+
     // public boolean checkcitizen(ArrayList<citizen> c, String n, String id, int r){
      //   boolean a=true;
        // for(int i=0;i<c.size();i++){

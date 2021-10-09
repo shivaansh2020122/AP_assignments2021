@@ -405,7 +405,23 @@ public class Main {
 
             }
             else if(choice==7){
-                choice=7;
+                System.out.print("Enter citizen id ");
+                String id= Reader.next();
+                if(cowin.rclist.containsKey(id)){
+                    System.out.println(cowin.rclist.get(id).getstat());
+                    if(cowin.rclist.get(id).getstat().equals("Registered")){
+                        continue;
+                    }
+                    System.out.println("Vaccine given "+cowin.rclist.get(id).getcitvacname());
+                    System.out.println("Number of dozes given  "+Integer.toString(cowin.rclist.get(id).getNd()));
+                    if(cowin.rclist.get(id).getstat().equals("Partially vaccinated")){
+                        System.out.println("Next due date "+Integer.toString(cowin.rclist.get(id).getNext()));
+
+                    }
+                }
+                else{
+                    System.out.println("No such citizen exists ");
+                }
             }
             else if(choice==8){
                 break;
