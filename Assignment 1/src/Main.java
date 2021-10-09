@@ -138,16 +138,20 @@ public class Main {
                 System.out.print("Enter Unique id ");
                 String uid=Reader.next();
                 //System.out.println("");
-                citizen ob= new citizen(name,uid,age);
+                if(uid.length()==12){
+                    citizen ob= new citizen(name,uid,age);
+
                 if(ob.retage()>=18){
                     cowin.registercitizen(ob);
                 }
                 else {
-                    System.out.println("Only 18 years above allowed ");
+                System.out.println("Only 18 years above allowed ");
                 }
-                }
-
-
+            }
+            else{
+                System.out.println("Invalid id");
+            }
+            }
             else if(choice==4){
                 System.out.print("Enter hospital id ");
                 String hid=Reader.next();
@@ -337,6 +341,10 @@ public class Main {
                                         //recheck
                                         if (cslot > l-1 || cslot < 0) {
                                             System.out.println("Invalid choice");
+                                            continue;
+                                        }
+                                        if(!(cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).retvacname().equals(vname))){
+                                            System.out.println("Not the slot with the same vaccine name");
                                             continue;
                                         }
                                         if(stat.equals("Partially vaccinated")){
