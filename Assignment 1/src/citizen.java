@@ -36,8 +36,11 @@ public class citizen {
         this.vacname=s;
     }
 
+    public String getcitName() {
+        return this.name;
+    }
 
-   // public boolean checkcitizen(ArrayList<citizen> c, String n, String id, int r){
+    // public boolean checkcitizen(ArrayList<citizen> c, String n, String id, int r){
      //   boolean a=true;
        // for(int i=0;i<c.size();i++){
          //   if(c.get(i).name.equals(n)){

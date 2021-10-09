@@ -31,6 +31,39 @@ public class hospital {
    public String retpin(){
        return this.pin;
    }
-
+    public boolean printappslotforvacname(String vn){
+       int c=0;
+       for(int i=0;i<this.slts.size();i++){
+           if(this.slts.get(i).retvacname().equals(vn)){
+               this.printdet();
+               c=1;
+               break;
+           }
+       }
+       if(c==1){
+           return true;
+       }
+       return false;
+    }
+    //vn vac name
+    public boolean searchslotvacname(String vn){
+        int c=0;
+        for(int i=0;i<this.slts.size();i++){
+            if(this.slts.get(i).retvacname().equals(vn)){
+                c=1;
+                break;
+            }
+        }
+        if(c==1){
+            return true;
+        }
+        return false;
+    }
+    public slot retithslot(int i){
+        return this.slts.get(i);
+    }
+    public int retslotsize(){
+       return this.slts.size();
+    }
 
 }

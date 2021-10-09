@@ -24,4 +24,7 @@ public class slot {
     public int retdayofslot(){
         return this.d;
     }
+    public int getQuan(){
+        return this.quan;
+    }
 }
