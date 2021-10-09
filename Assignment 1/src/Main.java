@@ -108,13 +108,16 @@ public class Main {
             //System.out.println(" ");
             int choice=Reader.nextint();
             if(choice==1){
+                int gap=0;
                 System.out.print("Enter vaccine name ");
                 String name= Reader.next();
                 System.out.print("Enter number of dozes required for the vaccine ");
                 int nd= Reader.nextint();
-                System.out.print("Enter the gap between dozes of the vaccine ");
-                int gap=Reader.nextint();
-                cowin.addvac(name,nd,gap);
+                if(nd>1) {
+                    System.out.print("Enter the gap between dozes of the vaccine ");
+                    gap = Reader.nextint();
+                    cowin.addvac(name, nd, gap);
+                }
             }
             else if(choice==2){
                 System.out.print("Enter name of Hospital ");
