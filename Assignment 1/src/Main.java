@@ -246,9 +246,7 @@ public class Main {
                                                 //kept in case some quantity initially was 0
                                                 cowin.h.get(Integer.parseInt(hid)).remSlot(cslot);
                                             } else {
-                                                if (cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).getQuan() == 0) {
-                                                    cowin.h.get(Integer.parseInt(hid)).remSlot(cslot);
-                                                }
+
                                                 //basically inc the no of dozes recieved
                                                 cowin.rclist.get(id).setNd();
                                                 //no need to set it everytime but will never cause error since already handled above
@@ -262,6 +260,9 @@ public class Main {
                                                 }
                                                 cowin.rclist.get(id).setNext(cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).retdayofslot()+v.getgap());
                                                 System.out.println(cowin.rclist.get(id).getcitName()+" vaccinated with "+cowin.rclist.get(id).getcitvacname());
+                                                if (cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).getQuan() == 0) {
+                                                    cowin.h.get(Integer.parseInt(hid)).remSlot(cslot);
+                                                }
                                             }
                                         }
                                         else {
@@ -351,9 +352,7 @@ public class Main {
                                             //kept in case some quantity initially was 0
                                             cowin.h.get(Integer.parseInt(hid)).remSlot(cslot);
                                         } else {
-                                            if (cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).getQuan() == 0) {
-                                                cowin.h.get(Integer.parseInt(hid)).remSlot(cslot);
-                                            }
+
                                             cowin.rclist.get(id).setNd();
                                             cowin.rclist.get(id).setcitvacname(v.getvacname());
                                             if (cowin.rclist.get(id).getNd() == v.getdozes()) {
@@ -363,6 +362,9 @@ public class Main {
                                             }
                                             cowin.rclist.get(id).setNext(cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).retdayofslot()+v.getgap());
                                             System.out.println(cowin.rclist.get(id).getcitName()+" vaccinated with "+cowin.rclist.get(id).getcitvacname());
+                                            if (cowin.h.get(Integer.parseInt(hid)).retithslot(cslot).getQuan() == 0) {
+                                                cowin.h.get(Integer.parseInt(hid)).remSlot(cslot);
+                                            }
                                         }
                                     }
                                     else {
