@@ -11,7 +11,7 @@ public class slot {
     }
     //used when hospital adds slots
     public void pr(){
-        System.out.println("for Day "+this.d+" Available quantity "+this.quan+" of "+this.vname);
+        System.out.println(" for Day "+this.d+" Available quantity "+this.quan+" of "+this.vname);
     }
     //while booking printing slots
     //public void prslot(){
