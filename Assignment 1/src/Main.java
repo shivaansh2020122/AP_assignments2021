@@ -116,8 +116,9 @@ public class Main {
                 if(nd>1) {
                     System.out.print("Enter the gap between dozes of the vaccine ");
                     gap = Reader.nextint();
-                    cowin.addvac(name, nd, gap);
                 }
+                    cowin.addvac(name, nd, gap);
+
             }
             else if(choice==2){
                 System.out.print("Enter name of Hospital ");
