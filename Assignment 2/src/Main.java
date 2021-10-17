@@ -6,6 +6,7 @@ public class Main {
     private ArrayList<instructor> instructors;
     private ArrayList<student> students;
     private ArrayList<lecture> material;
+    private ArrayList<comment> cmts;
 
     public Main(){
         this.instructors=new ArrayList<>();
@@ -13,12 +14,12 @@ public class Main {
     }
     public void pr_avalaible_instructors(){
         for(int i=0;i<this.instructors.size();i++){
-            System.out.println(i+" "+this.instructors.get(i).getinstructorsname());
+            System.out.println(i+" "+this.instructors.get(i).getname());
         }
     }
     public void pr_avaiable_students(){
         for(int i=0;i<this.students.size();i++){
-            System.out.println(i+" "+this.students.get(i).getstudentName());
+            System.out.println(i+" "+this.students.get(i).getname());
         }
     }
 
@@ -44,7 +45,8 @@ public class Main {
                 }
                 else {
                     while (true) {
-                        System.out.println("Welcome " + backpack.instructors.get(c).getinstructorsname());
+                        user u = backpack.instructors.get(c);
+                        System.out.println("Welcome " + u.getname());
                         System.out.println("INSTRUCTOR MENU\n" +
                                 "1. Add class material\n" +
                                 "2. Add assessments\n" +
