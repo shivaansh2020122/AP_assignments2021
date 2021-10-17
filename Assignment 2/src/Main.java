@@ -1,9 +1,11 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
+
 
 public class Main {
     private ArrayList<instructor> instructors;
     private ArrayList<student> students;
+    private ArrayList<lecture> material;
 
     public Main(){
         this.instructors=new ArrayList<>();
