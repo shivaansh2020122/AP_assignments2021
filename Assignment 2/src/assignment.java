@@ -11,7 +11,7 @@ public class assignment implements assessment{
     }
     @Override
     public void view(){
-        System.out.print("Assignment : "+this.stat+" Max marks "+this.maxmarks);
+        System.out.println("Assignment : "+this.pstat+" Max marks "+this.maxmarks);
 
     }
 }

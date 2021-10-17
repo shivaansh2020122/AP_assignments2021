@@ -10,5 +10,6 @@ public interface user {
 
     public void view_cmts(ArrayList<comment> c);
 
+    public void view_assignment(ArrayList<assessment> a);
 
 }

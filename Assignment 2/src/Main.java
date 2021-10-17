@@ -7,10 +7,14 @@ public class Main {
     private ArrayList<student> students;
     private ArrayList<lecture> material;
     private ArrayList<comment> cmts;
+    private ArrayList<assessment> assessments;
 
     public Main(){
         this.instructors=new ArrayList<>();
         this.students=new ArrayList<>();
+        this.material=new ArrayList<>();
+        this.cmts=new ArrayList<>();
+        this.assessments=new ArrayList<>();
     }
     public void pr_avalaible_instructors(){
         for(int i=0;i<this.instructors.size();i++){
@@ -61,11 +65,68 @@ public class Main {
                         if (choice1 == 1) {
                             System.out.println("1. Add Lecture Slide\n" +
                                     "2. Add Lecture Video");
+                            int n=sc.nextInt();
+                            lecture m;
+                            if(n==1||n==2){
+                                if(n==1) {
+                                    System.out.print("Enter topic of slides ");
+                                    String t = sc.nextLine();
+                                    System.out.print("Enter number of slides ");
+                                    int nslides = sc.nextInt();
+                                    String con[] = new String[nslides];
+                                    System.out.println("Enter content of slides ");
+                                    for (int i = 0; i < nslides; i++) {
+                                        System.out.println("Content of slide " + (i + 1) + ": ");
+                                        con[i] = sc.nextLine();
+                                    }
+                                    m = new slides(t, con, (instructor) u);
+                                    ((instructor)u).addclass(backpack.material, m);
+                                }
+                                if(n==2){
+                                    System.out.println("Enter topic of video");
+                                    String t= sc.nextLine();
+                                    System.out.println("Enter filename ");
+                                    String fname= sc.nextLine();
+                                    if(fname.endsWith(".mp4")){
+                                        m= new video(t,fname,(instructor) u);
+                                        ((instructor)u).addclass(backpack.material, m);
+                                    }
+                                    else{
+                                        System.out.println("Invalid format for filename ");
+                                    }
+
+                                }
+
+                            }
+                            else {
+                                System.out.println("Invalid choice ");
+                            }
 
                         }
                         else if(choice1==2){
                             System.out.println("1. Add Assignment\n" +
                                     "2. Add Quiz");
+                            int ch=sc.nextInt();
+                            assessment a;
+                            if(ch==1){
+                                System.out.print("Enter problem statement: ");
+                                String p= sc.nextLine();
+                                System.out.print("Enter max marks: ");
+                                int m= sc.nextInt();
+                                a=new assignment(p,m);
+                                ((instructor)u).addassesment(backpack.assessments,a);
+
+                            }
+                            else if(ch==2){
+                                System.out.print("Enter quiz question: ");
+                                String p = sc.nextLine();
+                                a=new quiz(p);
+                                ((instructor)u).addassesment(backpack.assessments,a);
+                            }
+                            else {
+                                System.out.println("Invalid choice ");
+                            }
+
                         }
                         else if(choice1==3){
 
