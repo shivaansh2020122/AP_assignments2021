@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class instructor implements user {
     private final String name;
@@ -34,13 +35,67 @@ public class instructor implements user {
         }
     }
 
+    //it will show all open and closed assigments
     @Override
     public void view_assignment(ArrayList<assessment> a){
         for(int i=0;i<a.size();i++){
-            System.out.print("ID "+i);
+            System.out.print("ID: "+i+" ");
             a.get(i).view();
         }
     }
+
+    public void close_assignments(ArrayList<assessment> a){
+        int c=0;
+        for(int i=0;i<a.size();i++){
+            if(a.get(i).getstat()){
+                if(c==0){
+                    c=1;
+                    System.out.println("List of open assignments ");
+                }
+                System.out.print("ID: "+i+" ");
+                a.get(i).view();
+                System.out.println("----------------");
+            }
+        }
+        if(c!=0){
+        System.out.println("Enter id of assignment to close ");
+        Scanner sc=new Scanner(System.in);
+        int ch= sc.nextInt();
+        if(ch>0&&ch<a.size()){
+        a.get(ch).close(this);}
+        else {
+            System.out.println("Invalid choice ");
+        }
+    }
+        else {
+            System.out.println("No open assignments ");
+        }
+    }
+
+    public void grade_assignments(ArrayList<assessment> assessments,ArrayList<student> students){
+        Scanner sc= new Scanner(System.in);
+        System.out.println("List of assessments ");
+        for(int i=0;i<assessments.size();i++){
+            System.out.print("ID: "+i+" ");
+            assessments.get(i).view();
+            System.out.println("----------------");
+
+        }
+        System.out.print("Enter ID of assessments to view submissions: ");
+        int ch= sc.nextInt();
+        assessment a = assessments.get(ch);
+        int c=0;
+        for(int i=0;i<students.size();i++){
+            //might have to add a check for open assignments as well
+            if(a.getopengradedstat(students.get(i))){
+                
+
+            }
+        }
+
+
+    }
+
 
     @Override
     public void add_cmts(ArrayList<comment> c,String cm){

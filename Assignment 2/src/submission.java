@@ -14,4 +14,11 @@ public class submission {
     public void grade(){
 
     }
+    //true implying non graded till now
+    public boolean getgradedstat(){
+        if(this.i==null){
+            return true;
+        }
+        return false;
+    }
 }

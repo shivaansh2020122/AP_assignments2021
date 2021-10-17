@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class student implements user {
     private final String name;
@@ -21,15 +22,39 @@ public class student implements user {
             l.get(i).show();
         }
     }
-
+    //it will show all open and closed asssignments
     @Override
     public void view_assignment(ArrayList<assessment> a){
         for(int i=0;i<a.size();i++){
-            System.out.print("ID "+i);
+            System.out.print("ID: "+i+" ");
             a.get(i).view();
         }
     }
 
+    public void sub_assignment(ArrayList<assessment> a){
+        int c=0;
+        for(int i=0;i<a.size();i++){
+            if(a.get(i).getopengradedstat(this)&&a.get(i).getstat()){
+                if(c==0){
+                   c=1;
+                   System.out.println("Pending assignments ");
+                }
+                System.out.print("ID: "+i+"");
+                a.get(i).view();
+            }
+
+        }
+        if(c==0){
+            System.out.println("No pending assignments ");
+        }
+        else {
+            Scanner sc= new Scanner(System.in);
+            System.out.print("Enter id of assessment ");
+            int ch=sc.nextInt();
+            a.get(ch).makesub(this);
+        }
+
+    }
 
     @Override
     public void add_cmts(ArrayList<comment> c,String cm){

@@ -113,14 +113,14 @@ public class Main {
                                 String p= sc.nextLine();
                                 System.out.print("Enter max marks: ");
                                 int m= sc.nextInt();
-                                a=new assignment(p,m);
+                                a=new assignment(p,m, backpack.students);
                                 ((instructor)u).addassesment(backpack.assessments,a);
 
                             }
                             else if(ch==2){
                                 System.out.print("Enter quiz question: ");
                                 String p = sc.nextLine();
-                                a=new quiz(p);
+                                a=new quiz(p, backpack.students);
                                 ((instructor)u).addassesment(backpack.assessments,a);
                             }
                             else {
@@ -129,9 +129,19 @@ public class Main {
 
                         }
                         else if(choice1==3){
+                            u.view_lec(backpack.material);
 
                         }
                         else if(choice1==4){
+                            u.view_assignment(backpack.assessments);
+                        }
+                        else if(choice1==5){
+                            continue;
+                        }
+                        else if(choice1==6){
+                            continue;
+                        }
+                        else if(choice1==7){
 
                         }
 
@@ -142,7 +152,6 @@ public class Main {
                             System.out.println("Invalid choice");
                                     }
                                 }
-
                         }
                     }
             else if(choice==2){
