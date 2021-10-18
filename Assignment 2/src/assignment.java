@@ -33,6 +33,11 @@ public class assignment implements assessment{
     }
 
     @Override
+    public boolean getsubmittedstat(student a){
+        return this.as.get(a).getmadesub();
+    }
+
+    @Override
     public void close(instructor i){
         this.stat=false;
     }
@@ -43,11 +48,32 @@ public class assignment implements assessment{
         System.out.print("Enter filename of assignment: ");
         String fname= sc.next();
         if(fname.endsWith(".zip")){
-            this.as.get(a).makesub(fname);
+            this.as.get(a).makesubmission(fname);
         }
         else{
             System.out.println("Error in name input of filename ");
         }
     }
+
+    @Override
+    public void viewsub(student s){
+        this.as.get(s).viewsubmitted();
+
+    }
+    @Override
+    public void maxmarks(instructor i){
+        System.out.println("Max marks "+this.maxmarks);
+    }
+
+    @Override
+    public void gradation(student s,int m,instructor i){
+        this.as.get(s).grade(i,m);
+    }
+
+    @Override
+    public void getgradesinfo(student s){
+        this.as.get(s).viewgradesstudent();
+    }
+
 }
 

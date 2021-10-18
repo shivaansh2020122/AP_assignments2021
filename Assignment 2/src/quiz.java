@@ -28,13 +28,17 @@ public class quiz implements assessment {
     public boolean getopengradedstat(student a){
         return this.as.get(a).getgradedstat();
     }
+    @Override
+    public boolean getsubmittedstat(student a){
+        return this.as.get(a).getmadesub();
+    }
 
     @Override
     public void makesub(student a){
         System.out.print(this.q+" ");
         Scanner sc = new Scanner(System.in);
         String s=sc.next();
-        this.as.get(a).makesub(s);
+        this.as.get(a).makesubmission(s);
 
     }
 
@@ -42,4 +46,25 @@ public class quiz implements assessment {
     public void close(instructor i){
         this.stat=false;
     }
+
+    @Override
+    public void viewsub(student s){
+        this.as.get(s).viewsubmitted();
+
+    }
+    @Override
+    public void maxmarks(instructor i){
+        System.out.println("Max marks "+this.maxmarks);
+    }
+
+    @Override
+    public void gradation(student s,int m,instructor i){
+        this.as.get(s).grade(i,m);
+    }
+
+    @Override
+    public void getgradesinfo(student s){
+        this.as.get(s).viewgradesstudent();
+    }
+
 }

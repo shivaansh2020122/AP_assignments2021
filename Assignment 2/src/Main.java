@@ -136,7 +136,23 @@ public class Main {
                             u.view_assignment(backpack.assessments);
                         }
                         else if(choice1==5){
-                            continue;
+
+                            ((instructor) u).grade_assessments1(backpack.assessments, backpack.students);
+                            int ch= sc.nextInt();
+                            assessment a = backpack.assessments.get(ch);
+                            if(((instructor) u).grade_assessments2(a, backpack.students)){
+                                ch= sc.nextInt();
+                                System.out.println("Submission: ");
+                                student s= backpack.students.get(ch);
+                                ((instructor) u).grade_view_sub(a,s);
+                                System.out.print("Marks scored ");
+                                int m= sc.nextInt();
+                                ((instructor) u).actual_grade(a,s,m);
+                            }
+                            else {
+                                System.out.println("No ungraded submissions available ");
+                            }
+
                         }
                         else if(choice1==6){
                             continue;

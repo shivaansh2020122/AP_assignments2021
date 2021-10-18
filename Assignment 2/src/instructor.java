@@ -72,7 +72,8 @@ public class instructor implements user {
         }
     }
 
-    public void grade_assignments(ArrayList<assessment> assessments,ArrayList<student> students){
+    //part 1 of grading
+    public void grade_assessments1(ArrayList<assessment> assessments,ArrayList<student> students){
         Scanner sc= new Scanner(System.in);
         System.out.println("List of assessments ");
         for(int i=0;i<assessments.size();i++){
@@ -82,18 +83,36 @@ public class instructor implements user {
 
         }
         System.out.print("Enter ID of assessments to view submissions: ");
-        int ch= sc.nextInt();
-        assessment a = assessments.get(ch);
-        int c=0;
+
+    }
+
+    public boolean grade_assessments2(assessment a,ArrayList<student> students){
+        int k=0;
         for(int i=0;i<students.size();i++){
             //might have to add a check for open assignments as well
-            if(a.getopengradedstat(students.get(i))){
-                
+            if(a.getopengradedstat(students.get(i))&& a.getsubmittedstat(students.get(i))){
+                if(k==0){
+                    k=1;
+                    System.out.println("Choose ID from ungraded submission");
+                }
+                System.out.println(i+" "+students.get(i).getname());
 
             }
         }
+        if(k==0){
+            return false;
+        }
+        return true;
 
+    }
 
+    public void grade_view_sub(assessment assessments,student s){
+            assessments.viewsub(s);
+            assessments.maxmarks(this);
+    }
+
+    public void actual_grade(assessment a,student s,int m){
+        a.gradation(s,m,this);
     }
 
 

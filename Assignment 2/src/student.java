@@ -31,6 +31,23 @@ public class student implements user {
         }
     }
 
+    public void view_grades(ArrayList<assessment> assessments){
+        System.out.println("Graded submissions");
+        for(int i=0;i<assessments.size();i++){
+            if(assessments.get(i).getopengradedstat(this)==false){
+                assessments.get(i).getgradesinfo(this);
+            }
+        }
+        System.out.println("");
+        System.out.println("Ungraded submissions ");
+        for(int i=0;i<assessments.size();i++){
+            if(assessments.get(i).getsubmittedstat(this)){
+                assessments.get(i).viewsub(this);
+            }
+        }
+
+    }
+
     public void sub_assignment(ArrayList<assessment> a){
         int c=0;
         for(int i=0;i<a.size();i++){
