@@ -41,6 +41,7 @@ public class instructor implements user {
         for(int i=0;i<a.size();i++){
             System.out.print("ID: "+i+" ");
             a.get(i).view();
+            System.out.println("----------");
         }
     }
 
@@ -61,6 +62,7 @@ public class instructor implements user {
         System.out.println("Enter id of assignment to close ");
         Scanner sc=new Scanner(System.in);
         int ch= sc.nextInt();
+        sc.nextLine();
         if(ch>0&&ch<a.size()){
         a.get(ch).close(this);}
         else {

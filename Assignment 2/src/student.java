@@ -20,6 +20,7 @@ public class student implements user {
     public void view_lec(ArrayList<lecture> l){
         for(int i=0;i<l.size();i++){
             l.get(i).show();
+            System.out.println("");
         }
     }
     //it will show all open and closed asssignments
@@ -28,20 +29,21 @@ public class student implements user {
         for(int i=0;i<a.size();i++){
             System.out.print("ID: "+i+" ");
             a.get(i).view();
+            System.out.println("----------");
         }
     }
 
     public void view_grades(ArrayList<assessment> assessments){
         System.out.println("Graded submissions");
         for(int i=0;i<assessments.size();i++){
-            if(assessments.get(i).getopengradedstat(this)==false){
+            if((assessments.get(i).getopengradedstat(this)==false)&&assessments.get(i).getsubmittedstat(this)){
                 assessments.get(i).getgradesinfo(this);
             }
         }
         System.out.println("");
         System.out.println("Ungraded submissions ");
         for(int i=0;i<assessments.size();i++){
-            if(assessments.get(i).getsubmittedstat(this)){
+            if(assessments.get(i).getsubmittedstat(this)&&assessments.get(i).getopengradedstat(this)){
                 assessments.get(i).viewsub(this);
             }
         }
@@ -51,12 +53,12 @@ public class student implements user {
     public void sub_assignment(ArrayList<assessment> a){
         int c=0;
         for(int i=0;i<a.size();i++){
-            if(a.get(i).getopengradedstat(this)&&a.get(i).getstat()){
+            if(a.get(i).getopengradedstat(this)&&a.get(i).getstat()&&(!a.get(i).getsubmittedstat(this))){
                 if(c==0){
                    c=1;
                    System.out.println("Pending assignments ");
                 }
-                System.out.print("ID: "+i+"");
+                System.out.print("ID: "+i+" ");
                 a.get(i).view();
             }
 
@@ -68,6 +70,7 @@ public class student implements user {
             Scanner sc= new Scanner(System.in);
             System.out.print("Enter id of assessment ");
             int ch=sc.nextInt();
+            sc.nextLine();
             a.get(ch).makesub(this);
         }
 

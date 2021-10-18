@@ -33,7 +33,7 @@ public class submission {
     //whether submitted or not
 
     public void viewsubmitted(){
-        System.out.println("Submission "+this.sub);
+        System.out.println("Submission: "+this.sub);
     }
 
     public void viewgradesstudent(){

@@ -18,7 +18,7 @@ public class slides implements lecture {
         System.out.println("Title: "+this.topic);
         if(this.content.length>0) {
             for (int i = 0; i < content.length; i++) {
-                System.out.println("Slide " + i + ": " + this.content[i]);
+                System.out.println("Slide " + (i+1) + ": " + this.content[i]);
             }
             System.out.println("Number of slides " + this.content.length);
         }
