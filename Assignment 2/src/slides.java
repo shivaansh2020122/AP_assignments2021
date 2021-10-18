@@ -1,10 +1,10 @@
 import java.util.Date;
 
 public class slides implements lecture {
-    private String topic;
-    private String content[];
-    private Date obj;
-    private instructor i;
+    private final String topic;
+    private final String content[];
+    private final Date obj;
+    private final instructor i;
     public slides(String t,String []c,instructor l){
         this.topic=t;
         this.content=c;
@@ -25,8 +25,8 @@ public class slides implements lecture {
         else {
             System.out.println("No slides inside");
         }
-        System.out.println("Date of upload "+this.obj);
-        System.out.println("Uploaded by "+this.i.getname());
+        System.out.println("Date of upload: "+this.obj);
+        System.out.println("Uploaded by: "+this.i.getname());
 
     }
 

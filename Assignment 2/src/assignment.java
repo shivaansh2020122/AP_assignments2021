@@ -1,11 +1,11 @@
 import java.util.*;
 
 public class assignment implements assessment{
-    private String pstat;
+    private final String pstat;
     //pstat problem statement
-    private int maxmarks;
+    private final int maxmarks;
     private boolean stat;
-    private HashMap<student,submission> as;
+    private final HashMap<student,submission> as;
     //as - assignment submission
 
     public assignment(String a, int m, ArrayList<student> s){

@@ -37,8 +37,8 @@ public class submission {
     }
 
     public void viewgradesstudent(){
-        System.out.println(this.sub);
-        System.out.println("Marks scored "+this.mar);
-        System.out.println("Graded by "+this.i.getname());
+        System.out.println("Submission: "+this.sub);
+        System.out.println("Marks scored: "+this.mar);
+        System.out.println("Graded by: "+this.i.getname());
     }
 }

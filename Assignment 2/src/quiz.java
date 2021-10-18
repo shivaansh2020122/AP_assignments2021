@@ -1,10 +1,10 @@
 import java.util.*;
 
 public class quiz implements assessment {
-    private String q;
+    private final String q;
     private boolean stat;
-    private int maxmarks;
-    private HashMap<student,submission> as;
+    private final int maxmarks;
+    private final HashMap<student,submission> as;
 
     public quiz(String a, ArrayList<student> s){
         this.q=a;

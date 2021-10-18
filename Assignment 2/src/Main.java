@@ -3,11 +3,11 @@ import java.util.*;
 
 
 public class Main {
-    private ArrayList<instructor> instructors;
-    private ArrayList<student> students;
-    private ArrayList<lecture> material;
-    private ArrayList<comment> cmts;
-    private ArrayList<assessment> assessments;
+    private final ArrayList<instructor> instructors;
+    private final ArrayList<student> students;
+    private final ArrayList<lecture> material;
+    private final ArrayList<comment> cmts;
+    private final ArrayList<assessment> assessments;
 
     public Main(){
         this.instructors=new ArrayList<>();
@@ -226,7 +226,7 @@ public class Main {
                         u.view_cmts(backpack.cmts);
                     }
                     else if(choice1==6){
-                        System.out.print("Enter comments ");
+                        System.out.print("Enter comment ");
                         String a = sc.nextLine();
                         u.add_cmts(backpack.cmts, a);
                     }

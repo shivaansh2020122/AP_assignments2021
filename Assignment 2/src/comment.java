@@ -1,9 +1,9 @@
 import java.util.Date;
 
 public class comment {
-    private String com;
-    private Date oc;
-    private user u;
+    private final String com;
+    private final Date oc;
+    private final user u;
     //date of comment (oc)
     public comment(String c,user a){
         this.com=c;

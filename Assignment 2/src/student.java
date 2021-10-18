@@ -24,6 +24,8 @@ public class student implements user {
         }
     }
     //it will show all open and closed asssignments
+    //as allowed in comments by vasu sir on Srijan Question
+    //otherwise just one if needed to be added
     @Override
     public void view_assignment(ArrayList<assessment> a){
         for(int i=0;i<a.size();i++){
