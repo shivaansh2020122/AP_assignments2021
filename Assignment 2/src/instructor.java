@@ -63,7 +63,7 @@ public class instructor implements user {
         Scanner sc=new Scanner(System.in);
         int ch= sc.nextInt();
         sc.nextLine();
-        if(ch>0&&ch<a.size()){
+        if(ch>=0&&ch<a.size()){
         a.get(ch).close(this);}
         else {
             System.out.println("Invalid choice ");
