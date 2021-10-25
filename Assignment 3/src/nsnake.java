@@ -1,4 +1,4 @@
-public class nsnake extends snake{
+public final class nsnake extends snake{
     public nsnake(){
         super(4,"Normal snake floor ",-2);
 

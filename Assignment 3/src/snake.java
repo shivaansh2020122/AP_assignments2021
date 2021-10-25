@@ -9,5 +9,6 @@ public abstract class snake extends floor {
         System.out.println("Player position Floor - "+p.getPos());
         System.out.println(p.getName()+" has reached an Empty floor");
         System.out.println("Total points "+(pt+1));
+        //System.out.println("");
     }
 }

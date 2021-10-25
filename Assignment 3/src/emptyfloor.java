@@ -1,4 +1,4 @@
-public class emptyfloor extends floor{
+public final class emptyfloor extends floor{
     public emptyfloor(){
         super("Empty floor ",1);
     }

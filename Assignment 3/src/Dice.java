@@ -1,6 +1,6 @@
 import java.util.*;
 //this dice class is not mine as allowed in the pdf I have taken the implemetation from Lecture 1
-public class Dice {
+public final class Dice {
     private final int numFaces; //maximum face value
     private int faceValue; //current value showing on the dice
     // Constructor: Sets the initial face value.

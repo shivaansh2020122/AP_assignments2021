@@ -12,5 +12,6 @@ public abstract class floor {
         System.out.println("Player position Floor - "+p.getPos());
         System.out.println(p.getName()+" has reached an "+this.nfloor);
         System.out.println("Total points "+(pt+this.points));
+        //System.out.println("");
     }
 }

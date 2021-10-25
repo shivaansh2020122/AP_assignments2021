@@ -1,4 +1,4 @@
-public class elevator extends ladder{
+public final class elevator extends ladder{
     public elevator(){
         super(8,"Elevator floor ",4);
     }

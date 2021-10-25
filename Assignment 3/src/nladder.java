@@ -1,4 +1,4 @@
-public class nladder extends ladder{
+public final class nladder extends ladder{
     public nladder(){
         super(4,"Normal ladder floor ",2);
     }

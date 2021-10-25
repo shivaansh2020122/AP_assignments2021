@@ -1,4 +1,4 @@
-public class kingcobra extends snake{
+public final class kingcobra extends snake{
     public kingcobra(){
         super(8,"King Cobra floor ",-4);
     }
