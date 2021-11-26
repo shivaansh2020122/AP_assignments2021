@@ -1,6 +1,6 @@
 public final class nladder extends ladder{
-    public nladder(){
-        super(4,"Normal ladder floor ",2);
+    public nladder(int i){
+        super(4,"Normal ladder floor ",2,i);
     }
     @Override
     public int move(Player p,int pts){

@@ -1,6 +1,6 @@
 public final class kingcobra extends snake{
-    public kingcobra(){
-        super(8,"King Cobra floor ",-4);
+    public kingcobra(int i){
+        super(8,"King Cobra floor ",-4,i);
     }
     @Override
     public int move(Player p,int pts){

@@ -7,24 +7,24 @@ public final class Game {
     private final Dice d;
     private final Player p[];
     private int points[];
-    public static Scanner sc;
+    private static Scanner sc;
     public Game(Player p1[]){
         d=new Dice(2);
         rfoor= new floor[14];
-        rfoor[0]= new emptyfloor();
-        rfoor[1] = new emptyfloor();
-        rfoor[2]= new elevator();
-        rfoor[3]= new emptyfloor();
-        rfoor[4]= new emptyfloor();
-        rfoor[5]= new nsnake();
-        rfoor[6]=new emptyfloor();
-        rfoor[7]= new emptyfloor();
-        rfoor[8]= new nladder();
-        rfoor[9]= new emptyfloor();
-        rfoor[10]= new emptyfloor();
-        rfoor[11]= new kingcobra();
-        rfoor[12]=new emptyfloor();
-        rfoor[13]= new emptyfloor();
+        rfoor[0]= new emptyfloor(0);
+        rfoor[1] = new emptyfloor(1);
+        rfoor[2]= new elevator(2);
+        rfoor[3]= new emptyfloor(3);
+        rfoor[4]= new emptyfloor(4);
+        rfoor[5]= new nsnake(5);
+        rfoor[6]=new emptyfloor(6);
+        rfoor[7]= new emptyfloor(7);
+        rfoor[8]= new nladder(8);
+        rfoor[9]= new emptyfloor(9);
+        rfoor[10]= new emptyfloor(10);
+        rfoor[11]= new kingcobra(11);
+        rfoor[12]=new emptyfloor(12);
+        rfoor[13]= new emptyfloor(13);
         p=p1;
         points=new int[p1.length];
     }
@@ -67,8 +67,14 @@ public final class Game {
 
             }
             else{
-                System.out.println("Player "+(i%n)+"cannot move ");
-                System.out.println("");
+                if(n>1) {
+                    System.out.println("Player " + ((i % n)+1) + " cannot move ");
+                    System.out.println("");
+                }
+                else{
+                    System.out.println("Player cannot move ");
+                    System.out.println("");
+                }
             }
 
             i++;
@@ -85,6 +91,7 @@ public final class Game {
         System.out.println("Enter the number of players you want to have in the game ");
         int n=sc.nextInt();
         sc.nextLine();
+        //this multiplayer just gives the winner and I could have added different number of faces for the die by changing just in the constructor but didn't because more faces just would've made the game short
         Player p1[] = new Player[n];
         for(int i=0;i<n;i++){
             int j=0;int k=0;

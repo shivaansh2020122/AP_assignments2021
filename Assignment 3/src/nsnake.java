@@ -1,6 +1,6 @@
 public final class nsnake extends snake{
-    public nsnake(){
-        super(4,"Normal snake floor ",-2);
+    public nsnake(int i){
+        super(4,"Normal snake floor ",-2,i);
 
     }
     @Override

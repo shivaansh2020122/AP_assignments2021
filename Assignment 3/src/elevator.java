@@ -1,6 +1,6 @@
 public final class elevator extends ladder{
-    public elevator(){
-        super(8,"Elevator floor ",4);
+    public elevator(int i){
+        super(8,"Elevator floor ",4,i);
     }
     @Override
     public int move(Player p,int pts){

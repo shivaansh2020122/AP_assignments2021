@@ -1,7 +1,7 @@
 public abstract class ladder extends floor{
     protected int jump;
-    public ladder(int jp,String n,int pts){
-        super(n, pts);
+    public ladder(int jp,String n,int pts,int i){
+        super(n, pts,i);
         this.jump=jp;
     }
 

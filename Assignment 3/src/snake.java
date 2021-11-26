@@ -1,7 +1,7 @@
 public abstract class snake extends floor {
     protected final int fall;
-    public snake(int f,String n,int p){
-        super(n,p);
+    public snake(int f,String n,int p,int i){
+        super(n,p,i);
         this.fall=-f;
     }
 
