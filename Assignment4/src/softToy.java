@@ -1,5 +1,5 @@
 public final class softToy implements Cloneable{
-    private String stoy;
+    private final String stoy;
 
     public softToy(String st) {
         this.stoy = st;

@@ -1,4 +1,4 @@
-public class genericCalc<T>{
+public final class genericCalc<T>{
     private final T a;
     private final T b;
     genericCalc(T x,T y){
