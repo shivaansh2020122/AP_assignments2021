@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -6,11 +7,16 @@ public final class game {
     private final Tile[] carpet;
     private final player p;
     private final Random random;
+    private final genericCalc<Integer> c;
+    private final genericCalc<String> c1;
+
     public game(){
         carpet= new Tile[20];
         p = new player();
         softToy[] softToys;
         random=new Random();
+        c= new genericCalc<Integer>();
+        c1=new genericCalc<String>();
         softToys= new softToy[20];
         softToys[0]=new softToy("Hugsy");
         softToys[1]=new softToy("Teddy");
@@ -37,15 +43,30 @@ public final class game {
         }
 
     }
+    public int inp(){
+        try {
+            Scanner sc=new Scanner(System.in);
+            int a3=sc.nextInt();
+            sc.nextLine();
+            //sc.close();
+            return a3;
+        }
+        catch (InputMismatchException i){
+            System.out.println("Invalid format for integer");
+            return inp();
+        }
+
+    }
     public boolean intdiv(){
         try {
             int a1=this.generaterandom();
             int a2=this.generaterandom();
+            this.c.set(a1,a2);
+            if(a2==0){
+                throw new Numberdivzero();
+            }
             System.out.println("Calculate the result of "+a1+" divided by "+a2);
-            genericCalc<Integer> c=new genericCalc<Integer>(a1,a2);
-            Scanner sc=new Scanner(System.in);
-            int a3=sc.nextInt();
-            sc.nextLine();
+            int a3=inp();
             if(c.calc(a3)){
                 System.out.println("Correct answer");
                 return true;
@@ -54,10 +75,11 @@ public final class game {
             return false;
         }
         catch (Exception e){
-            e.getMessage();
+            System.out.println(e.getMessage());
             return intdiv();
 
         }
+
     }
     public boolean strconcat(){
         try {
@@ -66,8 +88,9 @@ public final class game {
             System.out.println("Calculate the concatenation of strings "+a1+" and "+a2);
             Scanner sc=new Scanner(System.in);
             String a3=sc.nextLine();
-            genericCalc<String> c=new genericCalc<String>(a1,a3);
-            if(c.calc(a3)){
+            //sc.close();
+            this.c1.set(a1,a2);
+            if(this.c1.calc(a3)){
                 System.out.println("Correct answer");
                 return true;
             }
@@ -87,6 +110,7 @@ public final class game {
             s= sc.nextLine();
             if(s.equals("integer")){
                 if(this.intdiv()){
+                    this.carpet[r-1].addinbucktile(this.p);
                     System.out.println("You won a "+this.carpet[r-1].getwhichToystr()+" soft toy");
                 }
                 else{
@@ -95,6 +119,7 @@ public final class game {
             }
             else if(s.equals("string")){
                 if(this.strconcat()){
+                    this.carpet[r-1].addinbucktile(this.p);
                     System.out.println("You won a "+this.carpet[r-1].getwhichToystr()+" soft toy");
                 }
                 else{
@@ -153,7 +178,7 @@ public final class game {
                     System.out.println("You landed on tile "+r);
                     g.p.setPos(r);
                     System.out.println("You won a "+g.carpet[r-1].getwhichToystr()+" soft toy");
-                    g.p.addinbuck(g.carpet[r-1].getSoft().Clone());
+                    g.carpet[r-1].addinbucktile(g.p);
 
                 }
                 else{
@@ -171,5 +196,6 @@ public final class game {
         System.out.println("Game over");
         System.out.println("Soft toys won by you are: ");
         g.p.prbucket();
+        sc.close();
     }
 }

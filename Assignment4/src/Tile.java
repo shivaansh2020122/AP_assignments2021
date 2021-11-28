@@ -9,4 +9,7 @@ public final class Tile {
     public String getwhichToystr(){
         return this.soft.getStoy();
     }
+    public void addinbucktile(player p){
+        p.addinbuck(soft.Clone());
+    }
 }

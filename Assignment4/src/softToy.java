@@ -8,6 +8,7 @@ public final class softToy implements Cloneable{
     public String getStoy() {
         return stoy;
     }
+
     public softToy Clone(){
         try {
             softToy a=(softToy)super.clone();
