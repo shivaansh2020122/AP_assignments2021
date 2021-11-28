@@ -188,7 +188,7 @@ public final class game {
                 }
             }
             catch (beyondCarpet b){
-                b.getMessage();
+                System.out.println(b.getMessage());
             }
             a++;
             g.p.setPos(0);
